@@ -69,42 +69,36 @@ st.markdown("""
         margin-bottom: 10px;
     }
     
-    /* Métriques */
-    .metric-card {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        text-align: center;
-        margin: 10px 0;
-    }
-    
-    /* Tableau */
-    .stDataFrame { 
-        border: 1px solid #ddd; 
-        border-radius: 8px;
-    }
-    
-    /* Boutons */
-    .stButton > button {
-        border-radius: 8px;
-        font-weight: bold;
-        transition: all 0.3s;
-    }
-    
-    /* Expander */
-    .streamlit-expanderHeader {
-        background-color: #f5f5f5;
-        border-radius: 8px;
-        padding: 10px;
-        font-weight: bold;
-    }
-    
     /* Badge risque */
     .badge-credit { background-color: #2196f3; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
     .badge-market { background-color: #ff9800; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
     .badge-operational { background-color: #9c27b0; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
     .badge-general { background-color: #4caf50; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+    
+    /* Sections Actif/Passif */
+    .actif-section { 
+        background-color: #e3f2fd; 
+        padding: 15px; 
+        border-radius: 8px; 
+        border-left: 4px solid #1976d2;
+        margin: 10px 0;
+    }
+    .passif-section { 
+        background-color: #e8f5e9; 
+        padding: 15px; 
+        border-radius: 8px; 
+        border-left: 4px solid #388e3c;
+        margin: 10px 0;
+    }
+    
+    /* Alert MIXTE */
+    .mixte-alert {
+        background-color: #fff9c4; 
+        padding: 10px; 
+        border-radius: 5px; 
+        border-left: 4px solid #ffc107;
+        margin: 10px 0;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -143,22 +137,6 @@ La méthodologie utilisée, dans la circulaire 26/G/2006, pour les notations ext
 - Le montant global des créances sur une contrepartie ne peut dépasser 0,2% de la totalité du portefeuille clientèle de détail
 - Pour les TPE, y compris les professionnels: le montant global de ces créances est inférieur ou égal à 1 million de dirhams, et le chiffre d'affaires hors taxes est inférieur ou égal à 3 millions de dirhams"""
         },
-        "Art. 4": {
-            "titre": "Segmentation - PME",
-            "risque": "Crédit",
-            "categorie": "Segmentation",
-            "texte_complet": """Au sens de la présente notice technique, est considérée comme une créance sur une petite ou moyenne entreprise (PME) toute créance sur une entreprise (y compris les professionnels) dont:
-- Le chiffre d'affaires hors taxes individuel, ou celui du groupe d'intérêt auquel elle appartient, est supérieur à 3 millions de dirhams et inférieur ou égal à 50 millions de dirhams
-- Le chiffre d'affaires hors taxes individuel est inférieur à 3 millions de dirhams et le montant global des créances est supérieur à 1 million de dirhams"""
-        },
-        "Art. 5": {
-            "titre": "Segmentation - Grande Entreprise",
-            "risque": "Crédit",
-            "categorie": "Segmentation",
-            "texte_complet": """Le portefeuille «grande entreprise» (GE) englobe toutes les créances sur les entreprises, y compris les professionnels, dont le chiffre d'affaires hors taxes individuel, ou celui du groupe d'intérêt auquel elles appartiennent, est supérieur à 50 millions de dirhams.
-
-Sont également incluses dans cette catégorie les créances sur des entreprises faisant partie d'un groupe d'intérêt, pour lesquelles l'établissement n'est pas en mesure de disposer du chiffre d'affaires consolidé du groupe."""
-        },
         "Art. 10": {
             "titre": "Éléments d'actif - Créances",
             "risque": "Crédit",
@@ -172,20 +150,6 @@ C) Créances sur les établissements de crédit: Les établissements assimilés 
 D) Prêts immobiliers à usage résidentiel et commercial: La valeur des biens hypothéqués doit être calculée sur la base de règles d'évaluation rigoureuses et actualisées à intervalles réguliers.
 
 E) Créances en souffrance: L'encours des créances en souffrance est défini comme le capital restant dû augmenté des échéances impayées."""
-        },
-        "Art. 11": {
-            "titre": "Engagements de hors-bilan",
-            "risque": "Crédit",
-            "categorie": "Hors-bilan",
-            "texte_complet": """Les catégories des engagements de hors bilan sont les suivantes:
-
-A) Risque faible: Engagements révocables sans condition par les établissements, à tout moment et sans préavis.
-
-B) Risque modéré: Accords de refinancement ≤1 an, crédits documentaires import garantis, garanties de bonne exécution.
-
-C) Risque moyen: Accords de refinancement >1 an, facilités d'émission d'effets, engagements de financement de projet, lignes de substitution.
-
-D) Risque élevé: Acceptations de payer, ouvertures de crédit irrévocables, garanties à première demande de nature financière, contre-garanties."""
         },
         "Art. 12": {
             "titre": "Équivalent-risque dérivés",
@@ -213,19 +177,6 @@ Coefficients selon durée résiduelle:
 - Instrument financier: Contrat qui constitue à la fois un actif financier pour une partie et un passif financier ou un instrument de capital pour une autre partie.
 
 - Couverture: Stratégie poursuivie visant à annuler en partie ou intégralement les facteurs de risque d'une position ou du portefeuille de négociation."""
-        },
-        "Art. 56": {
-            "titre": "Composition portefeuille négociation",
-            "risque": "Marché",
-            "categorie": "Portefeuille",
-            "texte_complet": """Le portefeuille de négociation comprend les éléments ci-dessous:
-a) Les titres de transaction
-b) Les titres de placement (si >10% du bilan)
-c) Les produits dérivés
-d) Les opérations de cessions temporaires de titres et de change à terme
-e) Les autres opérations interbancaires de couverture
-f) Les produits de base à l'exclusion de l'or
-g) Les instruments de dérivés de crédit"""
         },
         "Art. 70": {
             "titre": "Calcul exigences marché",
@@ -353,7 +304,7 @@ def detect_risque_from_excel(row):
         return "Général"
 
 def get_actif_passif(row):
-    """Détermine si l'article est plutôt Actif ou Passif"""
+    """Détermine si l'article est plutôt Actif, Passif ou MIXTE"""
     actif_cols = ["ACTIF - Risque de Crédit", "ACTIF - Risque de Marché", 
                   "ACTIF - Risque Opérationnel", "ACTIF - Autre/Général"]
     passif_cols = ["PASSIF - Risque de Crédit", "PASSIF - Risque de Marché", 
@@ -362,12 +313,82 @@ def get_actif_passif(row):
     actif_count = sum([1 for col in actif_cols if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != ""])
     passif_count = sum([1 for col in passif_cols if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != ""])
     
-    if actif_count > passif_count:
+    if actif_count > 0 and passif_count > 0:
+        return "MIXTE"
+    elif actif_count > 0:
         return "ACTIF"
-    elif passif_count > actif_count:
+    elif passif_count > 0:
         return "PASSIF"
     else:
         return "MIXTE"
+
+def display_article_details(row, articles_db):
+    """Affiche les détails ACTIF/PASSIF d'un article avec couleurs"""
+    
+    article = row.get("Article", "N/A")
+    risque = row.get("Risque_Detecte", "Général")
+    cote = row.get("Cote_Detectee", "MIXTE")
+    titre = row.get("Titre", "Sans titre")
+    resume = row.get("Résumé", "")
+    
+    # Définition des colonnes
+    actif_cols = ["ACTIF - Risque de Crédit", "ACTIF - Risque de Marché", 
+                  "ACTIF - Risque Opérationnel", "ACTIF - Autre/Général"]
+    passif_cols = ["PASSIF - Risque de Crédit", "PASSIF - Risque de Marché", 
+                   "PASSIF - Risque Opérationnel", "PASSIF - Autre/Général"]
+    
+    # Récupérer le texte complet
+    texte_complet = ""
+    if article in articles_db:
+        texte_complet = articles_db[article].get("texte_complet", resume)
+    else:
+        texte_complet = resume
+    
+    # En-tête avec badge
+    color_class = get_risque_color(risque)
+    icon = get_risque_icon(risque)
+    badge_class = get_risque_badge(risque)
+    
+    st.markdown(f"""
+        <div class="{color_class}">
+            <div class="header-title">{icon} {article} - {titre}</div>
+            <p><span class="{badge_class}">{risque}</span> | <strong>Côté:</strong> {cote}</p>
+            <div class="article-text">{texte_complet}</div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # === SECTION ACTIF ===
+    actif_data = {col.split(" - ")[1]: row[col] for col in actif_cols 
+                  if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != ""}
+    
+    if actif_data:
+        with st.expander("📍 **ACTIF** - Expositions / Positions", expanded=(cote in ["ACTIF", "MIXTE"])):
+            for risk_type, content in actif_data.items():
+                st.info(f"**{risk_type}**\n\n{content}")
+    
+    # === SECTION PASSIF ===
+    passif_data = {col.split(" - ")[1]: row[col] for col in passif_cols 
+                   if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != ""}
+    
+    if passif_data:
+        with st.expander("💰 **PASSIF** - Exigences / Calculs", expanded=(cote in ["PASSIF", "MIXTE"])):
+            for risk_type, content in passif_data.items():
+                st.success(f"**{risk_type}**\n\n{content}")
+    
+    # === INDICATEUR VISUEL MIXTE ===
+    if cote == "MIXTE" and actif_data and passif_data:
+        st.markdown("""
+            <div class="mixte-alert">
+                <small>💡 <strong>Article MIXTE:</strong> Cet article contient à la fois 
+                des éléments d'exposition (ACTIF) et des règles de calcul (PASSIF)</small>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    # Bouton copier
+    if st.button("📋 Copier le résumé", key=f"copy_{article}"):
+        st.toast(f"✅ {article} copié !")
+    
+    st.markdown("---")
 
 # =============================================================================
 # EN-TÊTE DE L'APPLICATION
@@ -522,59 +543,7 @@ if view_option == "📇 Articles Détaillés":
     
     if not df_filtered.empty:
         for idx, row in df_filtered.iterrows():
-            article = row.get("Article", "N/A")
-            titre = row.get("Titre", "Sans titre")
-            resume = row.get("Résumé", "")
-            risque = row.get("Risque_Detecte", "Général")
-            cote = row.get("Cote_Detectee", "MIXTE")
-            
-            color_class = get_risque_color(risque)
-            icon = get_risque_icon(risque)
-            badge_class = get_risque_badge(risque)
-            
-            # Récupérer le texte complet depuis la DB si disponible
-            texte_complet = ""
-            if article in articles_db:
-                texte_complet = articles_db[article].get("texte_complet", resume)
-            else:
-                texte_complet = resume
-            
-            with st.expander(f"{icon} **{article}** - {titre} | <span class='{badge_class}'>{risque}</span> | {cote}", expanded=False):
-                # Contenu de la carte
-                col1, col2 = st.columns([3, 1])
-                
-                with col1:
-                    st.markdown(f'<div class="{color_class}"><div class="header-title">📝 Résumé</div><div class="article-text">{texte_complet}</div></div>', 
-                               unsafe_allow_html=True)
-                
-                with col2:
-                    st.metric("Risque", risque)
-                    st.metric("Côté", cote)
-                
-                # Détails Actif
-                st.markdown("#### 📍 ACTIF")
-                actif_cols = ["ACTIF - Risque de Crédit", "ACTIF - Risque de Marché", 
-                             "ACTIF - Risque Opérationnel", "ACTIF - Autre/Général"]
-                for col in actif_cols:
-                    if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != "":
-                        risk_name = col.split(" - ")[1]
-                        st.info(f"**{risk_name}**: {row[col]}")
-                
-                # Détails Passif
-                st.markdown("#### 💰 PASSIF")
-                passif_cols = ["PASSIF - Risque de Crédit", "PASSIF - Risque de Marché", 
-                              "PASSIF - Risque Opérationnel", "PASSIF - Autre/Général"]
-                for col in passif_cols:
-                    if pd.notna(row.get(col, "")) and str(row.get(col, "")).strip() != "":
-                        risk_name = col.split(" - ")[1]
-                        st.success(f"**{risk_name}**: {row[col]}")
-                
-                # Bouton copier
-                col_btn1, col_btn2 = st.columns([1, 4])
-                with col_btn1:
-                    if st.button("📋 Copier", key=f"copy_{article}"):
-                        st.toast(f"✅ {article} copié !")
-    
+            display_article_details(row, articles_db)
     else:
         st.info("📭 Aucun article ne correspond aux filtres sélectionnés.")
 
@@ -583,7 +552,6 @@ elif view_option == "📊 Tableau Structuré":
     st.subheader("📊 Tableau de Structuration Complet")
     
     if not df_filtered.empty:
-        # Affichage Excel
         st.dataframe(
             df_filtered,
             use_container_width=True,
@@ -591,7 +559,6 @@ elif view_option == "📊 Tableau Structuré":
             hide_index=True
         )
         
-        # Export
         col1, col2 = st.columns(2)
         with col1:
             buffer_xlsx = io.BytesIO()
@@ -615,7 +582,6 @@ elif view_option == "📊 Tableau Structuré":
                 mime="text/csv",
                 use_container_width=True
             )
-    
     else:
         st.warning("⚠️ Fichier Excel non trouvé ou aucune donnée filtrée")
 
@@ -624,7 +590,6 @@ elif view_option == "📖 Texte Intégral":
     st.subheader("📖 Consultation des Articles - Texte Intégral")
     
     if articles_db:
-        # Liste déroulante pour sélectionner un article
         article_list = list(articles_db.keys())
         selected_article = st.selectbox(
             "Sélectionner un article",
@@ -635,7 +600,6 @@ elif view_option == "📖 Texte Intégral":
         if selected_article in articles_db:
             article_data = articles_db[selected_article]
             
-            # En-tête de l'article
             col1, col2, col3 = st.columns([3, 1, 1])
             
             with col1:
@@ -649,7 +613,6 @@ elif view_option == "📖 Texte Intégral":
                 categorie = article_data.get('categorie', 'N/A')
                 st.metric("Catégorie", categorie)
             
-            # Texte complet avec couleur
             color_class = get_risque_color(article_data.get('risque', 'Général'))
             icon = get_risque_icon(article_data.get('risque', 'Général'))
             
@@ -660,11 +623,9 @@ elif view_option == "📖 Texte Intégral":
                 </div>
             """, unsafe_allow_html=True)
             
-            # Bouton copier
             if st.button("📋 Copier le texte"):
                 st.success("✅ Texte copié dans le presse-papier")
         
-        # Navigation entre articles
         col_prev, col_next = st.columns(2)
         current_idx = article_list.index(selected_article) if selected_article in article_list else 0
         
@@ -679,7 +640,6 @@ elif view_option == "📖 Texte Intégral":
                 if st.button("Article suivant ➡️", use_container_width=True):
                     st.session_state['selected_article'] = article_list[current_idx + 1]
                     st.rerun()
-    
     else:
         st.warning("⚠️ Base de données articles non disponible")
 
@@ -693,18 +653,14 @@ if not df.empty:
     col1, col2 = st.columns(2)
     
     with col1:
-        # Camembert par risque
         df["Risque_Detecte"] = df.apply(detect_risque_from_excel, axis=1)
         risque_counts = df["Risque_Detecte"].value_counts()
-        
         st.write("**Distribution par Type de Risque**")
         st.bar_chart(risque_counts)
     
     with col2:
-        # Barres par côté
         df["Cote_Detectee"] = df.apply(get_actif_passif, axis=1)
         cote_counts = df["Cote_Detectee"].value_counts()
-        
         st.write("**Distribution par Côté Bilan**")
         st.bar_chart(cote_counts)
 
@@ -718,7 +674,6 @@ if not df_filtered.empty:
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        # Export Excel
         buffer_xlsx = io.BytesIO()
         with pd.ExcelWriter(buffer_xlsx, engine='xlsxwriter') as writer:
             df_filtered.to_excel(writer, index=False, sheet_name='Articles_Filtres')
@@ -732,7 +687,6 @@ if not df_filtered.empty:
         )
     
     with col2:
-        # Export CSV
         csv_data = df_filtered.to_csv(index=False, encoding='utf-8-sig').encode('utf-8')
         st.download_button(
             label="📥 Télécharger CSV",
@@ -743,7 +697,6 @@ if not df_filtered.empty:
         )
     
     with col3:
-        # Export JSON (articles DB)
         json_data = json.dumps(articles_db, ensure_ascii=False, indent=2).encode('utf-8')
         st.download_button(
             label="📥 Télécharger JSON",
